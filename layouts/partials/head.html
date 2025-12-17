@@ -9,7 +9,7 @@
     <link rel="canonical" href="{{ .Site.BaseURL }}">
 
     {{- range .Site.Params.css }}
-    <link href="{{ . | relURL }}?{{ slicestr (. | relURL | md5) 0 10 }}" rel="stylesheet">
+    <link href="{{ . | relURL }}?{{ now.UnixNano }}" rel="stylesheet">
     {{- end }}
 
 </head>
