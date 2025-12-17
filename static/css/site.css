@@ -12,7 +12,7 @@
     font-style: normal;
 }
 
-html, body {
+html, body, pre {
     background: #282C34;
     color: transparent;
     user-select: none;
@@ -128,6 +128,10 @@ nav a {
 
 p.shown, li.shown {
     color: #DCDFE4;
+}
+
+pre.shown {
+    color: #E06C75; 
 }
 
 p>code.shown {
