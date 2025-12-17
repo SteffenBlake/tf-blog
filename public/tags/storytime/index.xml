@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>StoryTime on Blog | Technically.fun</title>
+    <link>http://localhost:1313/tags/storytime/</link>
+    <description>Recent content in StoryTime on Blog | Technically.fun</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/storytime/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why you don&#39;t need a Bootcamp</title>
+      <link>http://localhost:1313/posts/opinions/why-you-dont-need-a-bootcamp/</link>
+      <pubDate>Sat, 18 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/why-you-dont-need-a-bootcamp/</guid>
+      <description>&lt;p&gt;It’s the middle of 2006, I am a teen boy who just got my third paycheque from my summer job and lord knows my bank account is begging me to finally put my money to use. There are a plethora of options for a young man without any bills to pay, but I already knew what I wanted.&lt;/p&gt;&#xA;&lt;p&gt;I bought my first computer that weekend. In line at the shop I excitedly await the package, pumped to get home and finally strike out my own digital space on the machine. You see, up until this point I had been grounded in the world of the woeful shared ‘Family Computer’, an entity most of us 90s kids will fondly remember, most likely nestled in the corner of ones den or living room. Generally a simple machine, designed for browsing the internet and playing solitaire.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

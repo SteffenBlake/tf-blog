@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+<div class="container list page">
+<article>
+
+    <h1>{{ .Title }}</h1>
+
+    {{ .Content }}
+
+    {{ range .Pages.Reverse }}
+        {{ if (lt .Date now) }}
+            <h3><a href="{{ .Permalink }}">{{ .Title }} - {{ .Date.Format "2006-01-02" }}</a></h3>
+        {{ end}}
+    {{ end }}
+    
+</article>
+
+</div>
+
+{{ end }}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Blog | Technically.fun</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#000" />
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="http://localhost:1313/">
+    <link href="/css/site.css?dda0a00608" rel="stylesheet">
+
+</head>
+
+
+<body>
+<div id="terminal-root">    
+      <p>
+#!/bin/bash
+#     _____          _           _           _ _          __             
+#    /__   \___  ___| |__  _ __ (_) ___ __ _| | |_   _   / _|_   _ _ __  
+#      / /\/ _ \/ __| '_ \| '_ \| |/ __/ _` | | | | | | | |_| | | | '_ \ 
+#     / / |  __/ (__| | | | | | | (_| (_| | | | |_| |_|  _| |_| | | | |
+#     \/   \___|\___|_| |_|_| |_|_|\___\__,_|_|_|\__, (_)_|  \__,_|_| |_|
+#               2025 Steffen Blake              |___/                   
+  </p>
+
+<h1>Technically Fun</h1>
+<h2>Navigation</h2>
+<nav>
+    <a href="/">1. Home</a>
+    <a href="/posts">2. All my posts</a>
+    <a href="/about">3. About me</a>
+</nav>
+
+
+
+    
+
+
+    <h2>Inheritance vs Composition</h2>
+    <h3>August 20, 2021 -  Steffen Blake</h3>
+    <p>This is a phrase you will eventually hear at your workplace while coding away. Perhaps during lunch break or maybe in the comments of your code review. What exactly does this mean?</p>
+<p>Well, in Object Oriented Programming, there really are two ways to relate two types to each other. ‘Is a’ vs ‘Has a’ is often the colloquial.</p>
+<p>‘Is a’ implies inheritance. For example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Warrior</span> : Player {
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Implies <code>Warrior</code> ‘Is a’ <code>Player</code>. Which is fine and all. But lets say now that we want to have rigorous unit testing, and our <code>Player</code> Class has a lot of stuff going on already, perhaps a multitude of overridable methods and properties, and Warrior overrides a few.</p>
+<p>Well, that is fine, but we will run into a problem. Take this for example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Warrior</span> : Player {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> Attack(Target target) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> attack = CalculateAttack();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> fMod = CalculateFMod(target.Defense, attack);
+</span></span><span style="display:flex;"><span>        target.TakeDamage(attack * Constants.A_MOD + fMod * Constants.F2);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>At first glance, this method looks fine enough, perhaps it could be structured a bit better, but nothing seems to be terribly wrong with it. But we run our unit tests and, oh no! <code>WarriorTests_AttackUndead</code> is failing after our changes earlier today!</p>
+<p>Actually wait hold on, so is <code>RogueTests_AttackUndead</code>, <code>PriestTests_AttackLizard</code> and <code>BarbarianTests_AttackFlying</code>, but other similar tests aren’t breaking on other character types, it seems kind of random and sporadic. What happened?</p>
+<p>Well turns out it was this line of code:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> attack = CalculateAttack();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>See, <code>CalculateAttack</code> is a method inherited from the <code>Player</code> base class, and it had a weird bug in it.</p>
+<p>But you were not able to instantly tell the source of the bug, because instead of a <code>PlayerTests_Attack</code> test, you had a dozen various implementations with their own logic. Owch! Because you ended up making <code>Player</code> an abstract class to be inherited from, you couldn’t easily unit test it, not without doing some extra boilerplate. Which is sub optimal…</p>
+<p>So, what if instead, your <code>Character</code> classes did this instead?</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Warrior</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> ICharacter Character { <span style="color:#66d9ef">get</span>; }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Warrior(ICharacter character) {
+</span></span><span style="display:flex;"><span>        Character = character;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> Attack(Target target) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> attack = Character.CalculateAttack();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> fMod = Character.CalculateFMod(target.Defense, attack);
+</span></span><span style="display:flex;"><span>        target.TakeDamage(attack * Constants.A_MOD + fMod * Constants.F2);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is Composition vs Inheritance. And now what you have done is made <code>Character</code> a normal class, and much easier to unit test.</p>
+<p>And furthermore, now you can Mock an <code>ICharacter</code> in your <code>WarriorTests</code>, so even if <code>Character</code> methods break, your <code>WarriorTests</code> (and all others for that matter) will not throw up extra flags.</p>
+<p>Instead only <code>CharacterTests</code> will start breaking, making it very clear and concise exactly what broke and where, significantly decreasing debugging time.</p>
+<h1 id="inheritance-isnt-all-bad-though">Inheritance Isn’t all Bad Though</h1>
+<p>Because as it turns out, there is a clear cut time when you definitely want to inherit. The primary use case is <code>Serialization</code>. Whether you have a RESTful interface serializing from JSON, Protobuff handling packets over sockets, or an ORM connected to a SQL DB manipulating entities, Inheritance is probably the right call for any <code>Data</code> classes you are handling on these systems when needed.</p>
+<p>Let’s consider the following class:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Packet</span> {
+</span></span><span style="display:flex;"><span>    IPayload Payload { <span style="color:#66d9ef">get</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Packet(IPayload payload) {
+</span></span><span style="display:flex;"><span>        Payload = payload;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Sure, at first glance, this looks like an easy to unit test class that is loosely coupled to its <code>Payload</code>. That’s all fine and dandy, until you try and <code>Serialize</code> the darn thing! Since your trying to handle things via <code>Injection</code>, many serializing libraries will scoff at your class and inform you it must have a parameterless constructor before they will even entertain the thought of working with the class. Doh!</p>
+<p>In this case here, I would just use <code>Inheritance</code>.</p>
+<p>There are other examples of course, but realistically speaking this is the most common one I see. Too many people are far too willing to go all the way one direction or the other, claiming Inheritance vs Composition always does and will have a better choice.</p>
+<p>But I disagree. There are times when one shines over the other and, like most things in programming, its all about using the right tool for the job.</p>
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+
+</div>
+
+<div id="visual-container"></div>
+
+
+  <script src="/js/site.js?ff68167c07"></script>
+
+
+</body>
+
+
+</html>

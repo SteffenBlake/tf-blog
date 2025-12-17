@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h2>Pinned Posts</h2>
+{{ range where .Site.RegularPages "Params.tags" "intersect" (slice "pinned") }}
+    <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+    <h2>{{ .Date.Format "2006-01-02" }}</h2>
+{{ end }}
+
+<h2>Latest Posts</h2>
+{{ $pages := where (where .Site.RegularPages "Section" "posts") "Params.date" "lt" now }}
+{{ range first 5 (sort $pages "Date" "desc") }}
+    <h3><a href="{{ .Permalink }}">{{ .Title }} - {{ .Date.Format "2006-01-02" }}</a></h3>
+{{ end }}
+
+{{ end }}

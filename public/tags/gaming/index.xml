@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gaming on Blog | Technically.fun</title>
+    <link>http://localhost:1313/tags/gaming/</link>
+    <description>Recent content in Gaming on Blog | Technically.fun</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 23 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/gaming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Gamestate with Zenject in Unity</title>
+      <link>http://localhost:1313/posts/unity/building-a-gamestate-with-zenject-in-unity/</link>
+      <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/unity/building-a-gamestate-with-zenject-in-unity/</guid>
+      <description>&lt;p&gt;Unity provides countless mechanisms by which one can shoot themself in the foot. It&amp;rsquo;s a common and popular entrypoint to picking up C# for newcomers to the language. However, there&amp;rsquo;s a common gotcha individuals will quickly begin to encounter as they familiarize themselves with the basics of the language via Unity&amp;rsquo;s &lt;code&gt;MonoBehavior&lt;/code&gt; classes.&lt;/p&gt;&#xA;&lt;p&gt;Unfortunately this comes with a common and harsh pitfall: by default, Unity really encourages individuals to produce countless individual batches of code that they tightly couple to their game objects, which results in sooner than usual confronting the big bad wolf that is the Byzantine Generals Problem.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Game Masters and Positions of Power</title>
+      <link>http://localhost:1313/posts/opinions/game-masters-and-power/</link>
+      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/game-masters-and-power/</guid>
+      <description>&lt;p&gt;A heavily debated topic, without a doubt. Lets begin with a quick review for the uninitiated.&lt;/p&gt;&#xA;&lt;h2 id=&#34;roleplaying-games-rpgs&#34;&gt;Roleplaying Games (&amp;lsquo;RPGs&amp;rsquo;)&lt;/h2&gt;&#xA;&lt;p&gt;A popular form of game, usually for groups. Players assume control of characters of their creation and enact out narratives. Often to keep the game consistent and reasonable a framework of rules and limitations are put into place which players agree to adhere by. Quite often dice are used as a form of randomization to enforce a degree of luck and chance to outcomes in order to simulate reality&amp;rsquo;s callous fairness. Even a master of a skill can occasionally make mistakes and a great challenge can be overcome by sheer dumb luck.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

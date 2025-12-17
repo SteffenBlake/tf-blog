@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Blog | Technically.fun</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#000" />
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="http://localhost:1313/">
+    <link href="/css/site.css?dda0a00608" rel="stylesheet">
+
+</head>
+
+
+<body>
+<div id="terminal-root">    
+      <p>
+#!/bin/bash
+#     _____          _           _           _ _          __             
+#    /__   \___  ___| |__  _ __ (_) ___ __ _| | |_   _   / _|_   _ _ __  
+#      / /\/ _ \/ __| '_ \| '_ \| |/ __/ _` | | | | | | | |_| | | | '_ \ 
+#     / / |  __/ (__| | | | | | | (_| (_| | | | |_| |_|  _| |_| | | | |
+#     \/   \___|\___|_| |_|_| |_|_|\___\__,_|_|_|\__, (_)_|  \__,_|_| |_|
+#               2025 Steffen Blake              |___/                   
+  </p>
+
+<h1>Technically Fun</h1>
+<h2>Navigation</h2>
+<nav>
+    <a href="/">1. Home</a>
+    <a href="/posts">2. All my posts</a>
+    <a href="/about">3. About me</a>
+</nav>
+
+
+
+    
+
+
+    <h2>Making Of this Blog - Part 2</h2>
+    <h3>October 1, 2021 -  Steffen Blake</h3>
+    <p><a href="/posts/hugo/part-1-making-of-this-blog">Part 1 - Statically Served, High availability</a></p>
+<p>Part 2 - Building a CI/CD Markdown Blog &lt;&ndash; (You are here!)</p>
+<p><a href="/posts/hugo/part-3-serving-on-kubernetes">Part 2: Serve Hugo on Kubernetes</a></p>
+<h1 id="requirements">Requirements</h1>
+<p>To start off if you want to follow this guide, you will need the following:</p>
+<ol>
+<li>
+<p>A machine with Docker installed on it. <a href="https://docs.docker.com/get-docker/">See here for the docker install guide</a></p>
+</li>
+<li>
+<p>Hugo installed as well. <a href="https://gohugo.io/getting-started/installing/">See here for the hugo install guide</a></p>
+</li>
+<li>
+<p>Git installed. <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">See here for the git install guide</a></p>
+</li>
+<li>
+<p>A browser</p>
+</li>
+</ol>
+<p>Thats basically it!</p>
+<h1 id="step-one---create-the-output-folder">Step one - Create the output folder</h1>
+<h3 id="windows">Windows</h3>
+<p>Create a folder named <code>www</code> in your C drive, such that you now have <code>C:/www/</code> as a directory that exists</p>
+<h3 id="linux">Linux</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo mkdir /www
+</span></span><span style="display:flex;"><span>sudo chown nobody:nogroup /www
+</span></span></code></pre></div><h1 id="step-two---create-the-index-file">Step two - Create the index file</h1>
+<h3 id="windows-1">Windows</h3>
+<ol>
+<li>
+<p>Create a file named <code>index.html</code> in the new <code>www</code> folder</p>
+</li>
+<li>
+<p>Edit it with notepad and just enter this text in and save, <code>Hello World!</code></p>
+</li>
+</ol>
+<h3 id="linux-1">Linux</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>touch /www/index.html
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hello World!&#34;</span> &gt; /www/index.html
+</span></span></code></pre></div><h1 id="step-three---spin-up-nginx-static-ha">Step three - Spin up nginx-static-ha</h1>
+<p>Same command for both operating systems:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker run -D -v /www:/static -p 8080:80 --name my-site-0 steffenblake/nginx-static-ha
+</span></span></code></pre></div><p>This will spin up the docker container. You can then verify its running via:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker container ls
+</span></span></code></pre></div><p>And you should see <code>my-site-0</code> on the list.</p>
+<h1 id="step-four---check-its-output">Step four - Check its output</h1>
+<h3 id="browser">Browser</h3>
+<p>Open up the following url: <a href="http://localhost:8080">http://localhost:8080</a></p>
+<p>You should be greeted with &ldquo;Hello World!&rdquo; in your browser</p>
+<h3 id="headless-cli">Headless CLI</h3>
+<p>If you dont have a browser to work with you can also just do:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8080
+</span></span></code></pre></div><p>Which should output &ldquo;Hello World!&rdquo; to your terminal</p>
+<h1 id="step-five-verify-the-high-availability">Step five: Verify the High Availability</h1>
+<p>With the docker container still actively running lets modify <code>index.html</code> and see what happens.</p>
+<h3 id="windows-2">Windows</h3>
+<p>Open <code>index.html</code> again and change its text to something else and save it</p>
+<h3 id="linux-2">Linux</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hello world, again!&#34;</span> &gt; /www/index.html
+</span></span></code></pre></div><p>And then to verify it stuck (Should output &ldquo;Hello World, again!&rdquo;):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat /www/index.html
+</span></span></code></pre></div><h3 id="now-test-it">Now test it</h3>
+<p>After doing either of the above steps, now refresh your browser (or <code>curl</code> it again)&hellip; Hey! The text didnt change! Thats right, the original text for <code>index.html</code> was cached and your changes to the original files has had zero impact on the actual running site. This is good, we only want changes to happen when we trigger them on purpose</p>
+<h1 id="trigger-a-redeploy">Trigger a redeploy</h1>
+<p>One simple command to restart the container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker restart my-site-0
+</span></span></code></pre></div><p>Give it a few seconds to restart, and then once again refresh your browser or <code>curl</code>, and lo and behold now &ldquo;Hello world, again!&rdquo; should show up. Congrats we now have the static file serving working great!</p>
+<h1 id="step-six---create-our-git-repo">Step six - Create our git repo</h1>
+<p>Choose your github server of choice (Github, Gitlab, Gitea, Gogs, whatever) and create a public repo on it. Lets call it <code>MyBlog</code> for now.</p>
+<p>Then follow <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">this guide here</a> to create an Access Token (assuming you are using Github) if you havent already, and make sure it has <code>Push</code> and <code>Pull</code> privileges.</p>
+<p>For our case we probably dont want this token to ever expire, so set <code>none</code> or <code>never</code> for the expiry.</p>
+<p>Save this somewhere safe.</p>
+<h1 id="step-seven---bootstrap-the-hugo-site">Step seven - Bootstrap the hugo site</h1>
+<p>Now we need to setup our website template, which is actually quite simple.</p>
+<p>First off make yourself a folder you want to keep your work in, on your desktop is fine for now. Lets call the folder Blogs for now.</p>
+<p>Open up your terminal inside of that folder via whatever means works in your operating system. (On windows you can <code>shift+right click</code> &gt; <code>Open Powershell Window here</code>)</p>
+<p>And then run the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>hugo new site website
+</span></span></code></pre></div><p>After it runs you should now have the folder <code>website</code> inside of <code>Blogs</code> on your desktop.</p>
+<p>Next up we will use git to pull down our website to a different folder. On your git server of choice (I will use Github in this case) you will want to copy the <code>https</code> clone url.</p>
+<p>With your terminal still opened up in that <code>Blogs</code> folder, run this command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git clone &lt;your url your copied from above&gt;
+</span></span><span style="display:flex;"><span>git init
+</span></span></code></pre></div><p>This should now create a folder called <code>MyBlog</code> (Assuming thats what you named the repo) inside of <code>Blogs</code></p>
+<p>Inside of it should probably be an empty folder with perhaps the <code>.git</code> folder, maybe the <code>README.md</code> and/or the <code>LICENSE</code> file.</p>
+<p>Next we will copy all the files and folders Hugo made from that <code>website</code> folder to the <code>MyBlog</code> folder 1:1</p>
+<h4 id="dont-copy-the-website-folder-itself-in-if-you-do-it-right-the-file-configtoml-should-exist-now-at-your-desktopblogsmyblogconfigtoml">Don&rsquo;t copy the website folder itself in, if you do it right the file <code>config.toml</code> should exist now at <code>&lt;Your Desktop&gt;/Blogs/MyBlog/config.toml</code></h4>
+<h1 id="step-eight---pick-a-theme">Step eight - Pick a theme!</h1>
+<p>Alright! Nearly done, now for one more step, navigate over to <a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> and pick out a theme you like.</p>
+<p>On the themes page hit the Download button which <em>usually</em> takes you to a git server (often Github)</p>
+<p>We need to take note of two things. First off that same clone HTTPS Url again. Second the name of the theme.</p>
+<p>Lets use the hugo-PaperMod theme as an example. The two things we want can be seen here in this pic below.</p>
+<p><img src="/images/part-2-building-a-blog/github-example.png" alt="Github Example"></p>
+<p>The green box is that HTTPS Url we need which I will call <code>&lt;Clone Url&gt;</code> and the red is the <code>&lt;Repo Name&gt;</code></p>
+<p>In our case for hugo-PaperMod this is <code>https://github.com/adityatelange/hugo-PaperMod.git</code> and <code>hugo-PaperMod</code> respectively.</p>
+<p>We now need to move our terminal into the <code>MyBlog</code> folder that git made us. Assuming your terminal is still pointing at <code>Blogs</code> you simple just execute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd MyBlog
+</span></span></code></pre></div><p>And you should now be pointing at <code>Blogs/MyBlog</code></p>
+<p>Excellent, now we can add the theme. Execute this command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git submodule add &lt;Clone Url&gt; themes/&lt;Repo Name&gt;
+</span></span></code></pre></div><p>Or in the case of paperMod this would become</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/hugo-PaperMod
+</span></span></code></pre></div><p>Now we can verify this worked by simple checking and verifying that the folder <code>hugo-PaperMod</code> (or whatever your repo name is) exists inside of the <code>themes</code> folder</p>
+<p>So for papermod&rsquo;s example, the following file should now exist:</p>
+<p><code>&lt;Desktop&gt;/Blogs/MyBlog/themes/hugo-PaperMod/config.toml</code></p>
+<p>Finally we need to add this theme to our root <code>config.toml</code>, which is not the one mentioned above, but instead this one:</p>
+<p><code>&lt;Desktop&gt;/Blogs/MyBlog/config.toml</code></p>
+<p>Which is as simple as just adding this entry to the very bottom of the file:</p>
+<pre tabindex="0"><code>
+theme = &#34;&lt;Repo Name&gt;&#34;
+</code></pre><p>Or in our case</p>
+<pre tabindex="0"><code>
+theme = &#34;hugo-PaperMod&#34;
+</code></pre><h1 id="step-nine-run-the-site-locally-to-test">Step nine: Run the site locally to test</h1>
+<p>With our terminal pointing at the <code>MyBlog</code> directory we want to now run this command:</p>
+<pre tabindex="0"><code>
+hugo server -D -F
+</code></pre><p>There are two params we are passing in here.</p>
+<ul>
+<li>-D - Publish Drafts
+<ul>
+<li>This command will still host up files tags as <code>draft = true</code></li>
+</ul>
+</li>
+<li>-F - Publish Future
+<ul>
+<li>This command will still host up files set to publish in the future</li>
+</ul>
+</li>
+</ul>
+<p>Don&rsquo;t worry too much about this, but, this is the command you will want to run to be able to preview your posts on the fly when editing them locally, before you commit them.</p>
+<p>Once you run this command you should see something like this in your terminal:</p>
+<pre tabindex="0"><code>
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+</code></pre><p>Open that link up in your browser and, viola! Your website exists!</p>
+<p>You can hit Ctrl+C in the terminal now to turn the site off.</p>
+<h1 id="step-ten-push-up-the-site">Step ten: Push up the site</h1>
+<p>We will first make one last little tweak to make our lives easier in the future.</p>
+<p>Create a file called <code>.gitignore</code> (note the period at the start) in the <code>MyBlog</code> folder (if one doesnt exist yet). Edit this file with a text editor and add this line of text to it:</p>
+<pre tabindex="0"><code>
+/public
+</code></pre><p>And save it.</p>
+<p>Then back in your terminal, run these commands:</p>
+<pre tabindex="0"><code>
+git add -A
+git commit -m &#34;Initial Commit&#34;
+git push
+</code></pre><p>The last command will prompt your for your username and password. In Github&rsquo;s case, this is your email for the username, and the password is that Access Token you generated back in step Six.</p>
+<p>You should now be able to go to your actual git repo on Github.com or etc and see that all your website&rsquo;s files are now pushed up online.</p>
+<h1 id="step-eleven-port-forwarding">Step eleven: Port forwarding</h1>
+<p>Now here&rsquo;s the fancy part, we can semi automate the process of building the website everytime we make changes and automatically push them into that <code>www</code> folder we made back in Step One, for consumption by our <code>nginx-static-ha</code> docker image we set up in Steps three to five</p>
+<p>First off check out your public ip by just googling &ldquo;Whats my ip?&rdquo;, it should show up for you. This is the public IP people can go to which then sends traffic to our router.</p>
+<p>But to then get traffic to go from your router to your PC, we have to specify further. This is called port forwarding.</p>
+<p>To start you will need to expose port 9000 to the internet for triggering webhooks. All this means is when Github detects changes to your repo, it will trigger a rebuild on your computer.</p>
+<p>Follow <a href="https://www.hellotech.com/guide/for/how-to-port-forward">this guide here</a>. You will want to port forward port 9000 to 9000, on TCP, to the local IP of the machine you are wanting to run <code>nginx-static-ha</code> on.</p>
+<p>This will now make it so when someone types in <code>&lt;Your.Public.Ip.Address&gt;:9000</code> it directs traffic all the way through your router and to <code>&lt;your.local.device.ip&gt;:9000</code></p>
+<h1 id="step-twelve-webhook-hugo">Step twelve: webhook-hugo</h1>
+<p>Now we are going to snag the second tool I have built for this process, <a href="https://github.com/SteffenBlake/docker-webhook-hugo">docker-webhook-hugo</a></p>
+<p>All this tool does is listen on port 9000 and, when triggered, pulls the repo that triggered it, assumes it has a hugo website on it and tries to build it, then outputs the hugo website to a specified folder.</p>
+<p>Take a moment on your github to note the branch name your repo has, it might be <code>master</code> or <code>main</code>, this is <code>&lt;HUGO_BRANCH&gt;</code> for the below command.</p>
+<p>Also once again we will be needing the Repository clone url, <code>&lt;HUGO_REPOSITORY&gt;</code></p>
+<p>You also will need to come up with some kind of Secret Password (henceforth called <code>&lt;HUGO_SECRET&gt;</code>)</p>
+<p>You can find it here</p>
+<p><img src="/images/part-2-building-a-blog/github-branch.png" alt="Github Branch"></p>
+<h3 id="windows-3">Windows</h3>
+<pre tabindex="0"><code>
+docker run -d -v C:/www:/www -p 9000:9000 -e HUGO_BRANCH=&lt;HUGO_BRANCH&gt; -e HUGO_SECRET=&lt;HUGO_SECRET&gt; -e HUGO_REPOSITORY=&lt;HUGO_REPOSITORY&gt; --name build-server steffenblake/webhook-hugo
+</code></pre><h3 id="linux-3">Linux</h3>
+<pre tabindex="0"><code>
+docker run -d -v /www:/www -p 9000:9000 -e HUGO_BRANCH=&lt;HUGO_BRANCH&gt; -e HUGO_SECRET=&lt;HUGO_SECRET&gt; -e HUGO_REPOSITORY=&lt;HUGO_REPOSITORY&gt; --name build-server steffenblake/webhook-hugo
+</code></pre><h3 id="example">Example</h3>
+<p>So if my branch is <code>master</code> and I want my secret to be <code>PaSsWoRd123</code> and my repo is at <code>https://github.com/someone/somerepo.git</code> then I would execute something like:</p>
+<pre tabindex="0"><code>
+
+docker run -d -v C:/www:/www -p 9000:9000 -e HUGO_BRANCH=master -e HUGO_SECRET=PaSsWoRd123 -e HUGO_REPOSITORY=https://github.com/someone/somerepo.git --name build-server steffenblake/webhook-hugo
+</code></pre><p>We can test if its working by executing the following:</p>
+<pre tabindex="0"><code>
+curl -L -X POST &#39;localhost:9000/hooks/build&#39; \
+-H &#39;Content-Type: application/json&#39; \
+-H &#34;X-Gitlab-Token: &lt;HUGO_SECRET&gt;&#34; \
+--insecure \
+-d &#34;{
+    \&#34;ref\&#34; : \&#34;&lt;HUGO_BRANCH&gt;\&#34;
+}&#34;
+</code></pre><p>After executing that, wait a few seconds and then check out your <code>www</code> folder. If all went well your hugo files should all be statically served there!</p>
+<p>If you encounter issues you can run the following command to inspect what may have caused a problem:</p>
+<pre tabindex="0"><code>
+docker logs build-server
+</code></pre><h1 id="step-thirteen-bind-it">Step thirteen, Bind it!</h1>
+<p>Now that it is running and our port forwarding is functional we can do the final step. We want to trigger the build server using Github automatically whenever we make a change, instead of having to do it manually.</p>
+<p>On your Github repo, navigate as such (which will prompt you for your password)</p>
+<p><img src="/images/part-2-building-a-blog/github-webhook-menu.png" alt="Github Branch"></p>
+<p>On the subsequent page, enter the values like so, where Your.Public.Ip.Address is the address you got back in eleven</p>
+<p><img src="/images/part-2-building-a-blog/github-webhook-example.png" alt="Github Branch"></p>
+<p>And then hit <code>Add webhook</code></p>
+<h1 id="test-it">Test it!</h1>
+<p>Now lets make a small change to see if it works.</p>
+<p>On your github repo modify something simple like a value in the <code>config.toml</code> in <code>MyBlog</code>, like perhaps your repositories author, or maybe a link. Something that is easy to verify &ldquo;It changed&rdquo;!</p>
+<p>You can check what it theoretically should look like by running the hugo server locally again as you did in Step Nine, to preview the change before you push it up live.</p>
+<p>Once satisfied, run the same command you did in step ten to commit and push</p>
+<pre tabindex="0"><code>
+git add -A
+git commit -m &#34;Testing webhook&#34;
+git push
+</code></pre><p>Wait a few seconds and then try out</p>
+<pre tabindex="0"><code>
+docker logs build-server
+</code></pre><p>To verify if the webhook got through.</p>
+<p>Then finally to actually see the changes, run the following command again to restart your static file server</p>
+<pre tabindex="0"><code>
+docker restart my-site-0
+</code></pre><p>And once again open up <a href="http://localhost:8080">http://localhost:8080</a> and, if everything worked, your hugo site should be live here.</p>
+<p>Now all you need to do to update this hosted site is:</p>
+<ol>
+<li>
+<p>Modify files to your hearts content in your repo</p>
+</li>
+<li>
+<p>Commit and push your changes</p>
+</li>
+<li>
+<p>Restart your site&rsquo;s docker image to reload the changes</p>
+</li>
+</ol>
+<p>But we can do even better. The next guide will go over how, using Kubernetes, we can automate even step 3 and <em>truly</em> make it High Availability. To prep, please check out my guides as they go up on running kubernetes on bare metal!</p>
+<p><a href="/posts/hugo/part-3-serving-on-kubernetes">Part 2: Serve Hugo on Kubernetes</a></p>
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+
+</div>
+
+<div id="visual-container"></div>
+
+
+  <script src="/js/site.js?ff68167c07"></script>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DependencyInjection on Blog | Technically.fun</title>
+    <link>http://localhost:1313/categories/dependencyinjection/</link>
+    <description>Recent content in DependencyInjection on Blog | Technically.fun</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/dependencyinjection/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dependency Injection Part 2</title>
+      <link>http://localhost:1313/posts/dependency-injection/dependency-injection-part-2/</link>
+      <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/dependency-injection/dependency-injection-part-2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:1313/post/dependency-injection/dependency-injection-part-0&#34;&gt;Part 0: What&amp;rsquo;s the deal?&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/post/dependency-injection/dependency-injection-part-1&#34;&gt;Part 1: Bootstrapping&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Part 2: Extensions &amp;lt;&amp;ndash; (You are here!)&lt;/p&gt;&#xA;&lt;p&gt;If you would like to catch up to where we are at now, you can checkout the git and start on the branch ‘Dependency-Injection-Part-2’, which is where we left off on the end of Part 1&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/SteffenBlake/TStore/tree/Dependency-Injection-Part-2&#34;&gt;Github&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/SteffenBlake/TStore.git&#34;&gt;Direct Link&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;interface-extension-practices&#34;&gt;Interface Extension Practices&lt;/h2&gt;&#xA;&lt;p&gt;Before we begin, I’ll go into the basics of why we are about to do the following coding choices below. What our end goal is is to have the following methods on our &lt;code&gt;ITStore&lt;/code&gt; object that make life much easier for us, since the current methods are very low level and granular. Also a pain to use.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dependency Injection Part 1</title>
+      <link>http://localhost:1313/posts/dependency-injection/dependency-injection-part-1/</link>
+      <pubDate>Sat, 04 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/dependency-injection/dependency-injection-part-1/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/dependency-injection/dependency-injection-part-0&#34;&gt;Part 0: What&amp;rsquo;s the deal?&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Part 1: Bootstrapping &amp;lt;&amp;ndash; (You are here!)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/dependency-injection/dependency-injection-part-2&#34;&gt;Part 2: Extensions&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;note-this-project-will-be-done-entirely-in-c-if-you-want-to-follow-alone-in-your-own-language-like-java-you-will-probably-need-to-do-some-googling-on-how-to-perform-specific-parts-where-i-reference-net-specific-libraries-ill-try-to-only-do-this-when-absolutely-necessary&#34;&gt;Note: This project will be done entirely in C#, if you want to follow alone in your own language like Java, you will probably need to do some googling on how to perform specific parts where I reference .Net specific libraries. Ill try to only do this when absolutely necessary.&lt;/h3&gt;&#xA;&lt;p&gt;To start, ensure you have Visual Studio 2017 installed, you can get a free copy of the Community Edition &lt;a href=&#34;https://www.visualstudio.com/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dependency Injection Part 0</title>
+      <link>http://localhost:1313/posts/dependency-injection/dependency-injection-part-0/</link>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/dependency-injection/dependency-injection-part-0/</guid>
+      <description>&lt;p&gt;Part 0: What&amp;rsquo;s the deal? &amp;lt;&amp;ndash; (You are here!)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/dependency-injection/dependency-injection-part-1&#34;&gt;Part 1: Bootstrapping&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/dependency-injection/dependency-injection-part-2&#34;&gt;Part 2: Extensions&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;So, you’ve heard your coworkers, peers, or anonymous internet friends mention Dependency Injection. Sometimes off the cuff as part of a sentence filled with other magic tech mumbo jumbo.&lt;/p&gt;&#xA;&lt;p&gt;It sound’s pretty cool though, right? ’Dependency Injection&amp;rsquo;, you’re veritable key to the programmer’s castle. It must be important to your code, right?&lt;/p&gt;&#xA;&lt;p&gt;Well, not really. In fact, for a large quantity of code architecures, especially Functional Programming, Dependency Injection is out of the question since it goes against the very principle of your language.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

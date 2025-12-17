@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IoT on Blog | Technically.fun</title>
+    <link>http://localhost:1313/categories/iot/</link>
+    <description>Recent content in IoT on Blog | Technically.fun</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/iot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Async Event Stream for IoT Devices in .Net Core</title>
+      <link>http://localhost:1313/posts/iot/async-event-stream-for-iot-devices-in-net-core/</link>
+      <pubDate>Mon, 12 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/iot/async-event-stream-for-iot-devices-in-net-core/</guid>
+      <description>&lt;p&gt;Building applications for IoT Devices has it’s challenges, and as I checked out several options presented by various libraries on various platforms, the consistent challenge I found was handling a variety of events across numerous board pins I wanted to listen on.&lt;/p&gt;&#xA;&lt;h1 id=&#34;the-challenge&#34;&gt;The Challenge&lt;/h1&gt;&#xA;&lt;p&gt;Every library I checked out involved a fair bit of boilerplate work I had to sort out in order to utilize multithreading on something like a Raspberry Pi’s multicore processor. What I really wanted was a way to easily describe subscriptions to pin events, spin up a listener, and then handle an incoming stream of events on the fly without blocking any threads.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

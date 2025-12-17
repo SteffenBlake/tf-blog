@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Blog | Technically.fun</title>
+    <link>http://localhost:1313/tags/docker/</link>
+    <description>Recent content in Docker on Blog | Technically.fun</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Making Of this Blog - Part 3</title>
+      <link>http://localhost:1313/posts/hugo/part-3-serving-on-kubernetes/</link>
+      <pubDate>Tue, 01 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hugo/part-3-serving-on-kubernetes/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/hugo/part-1-making-of-this-blog&#34;&gt;Part 1 - Statically Served, High availability&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/hugo/part-2-building-a-blog&#34;&gt;Part 2 - Building a CI/CD Markdown Blog&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Part 3 - Serving Hugo on Kubernetes &amp;lt;&amp;ndash; (You are here!)&lt;/p&gt;&#xA;&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;&#xA;&lt;p&gt;For this next stage of this blog, you will need primarily one thing installed: Kubernetes&lt;/p&gt;&#xA;&lt;p&gt;See this handy guide here on how to install minikube (a handy local test enviro for kubernetes) and get it running: &lt;a href=&#34;https://minikube.sigs.k8s.io/docs/start/&#34;&gt;https://minikube.sigs.k8s.io/docs/start/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Furthermore you will want to have on hand the following from the prior parts of this guide:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Making Of this Blog - Part 2</title>
+      <link>http://localhost:1313/posts/hugo/part-2-building-a-blog/</link>
+      <pubDate>Fri, 01 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hugo/part-2-building-a-blog/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/hugo/part-1-making-of-this-blog&#34;&gt;Part 1 - Statically Served, High availability&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Part 2 - Building a CI/CD Markdown Blog &amp;lt;&amp;ndash; (You are here!)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/hugo/part-3-serving-on-kubernetes&#34;&gt;Part 2: Serve Hugo on Kubernetes&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;&#xA;&lt;p&gt;To start off if you want to follow this guide, you will need the following:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;A machine with Docker installed on it. &lt;a href=&#34;https://docs.docker.com/get-docker/&#34;&gt;See here for the docker install guide&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Hugo installed as well. &lt;a href=&#34;https://gohugo.io/getting-started/installing/&#34;&gt;See here for the hugo install guide&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Git installed. &lt;a href=&#34;https://git-scm.com/book/en/v2/Getting-Started-Installing-Git&#34;&gt;See here for the git install guide&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Making Of this Blog - Part 1</title>
+      <link>http://localhost:1313/posts/hugo/part-1-making-of-this-blog/</link>
+      <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hugo/part-1-making-of-this-blog/</guid>
+      <description>&lt;p&gt;Part 1 - Statically Served, High availability &amp;lt;&amp;ndash; (You are here!)&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/hugo/part-2-building-a-blog&#34;&gt;Part 2: Building a CI/CD Markdown Blog&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/posts/hugo/part-3-serving-on-kubernetes&#34;&gt;Part 2: Serve Hugo on Kubernetes&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;pre-amble&#34;&gt;Pre-amble&lt;/h2&gt;&#xA;&lt;p&gt;I wanted to take some time to write up a guide on some handy docker images I created recently in my process of building this very blog. I personally serve everything off of a Kubernetes cluster, but you could very well use this system much the same way on something like Docker Swarm or really any Docker management system.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

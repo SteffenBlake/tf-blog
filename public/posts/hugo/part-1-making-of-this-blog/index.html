@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>Blog | Technically.fun</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#000" />
+    <link rel="icon" href="/favicon.ico">
+    <link rel="canonical" href="http://localhost:1313/">
+    <link href="/css/site.css?dda0a00608" rel="stylesheet">
+
+</head>
+
+
+<body>
+<div id="terminal-root">    
+      <p>
+#!/bin/bash
+#     _____          _           _           _ _          __             
+#    /__   \___  ___| |__  _ __ (_) ___ __ _| | |_   _   / _|_   _ _ __  
+#      / /\/ _ \/ __| '_ \| '_ \| |/ __/ _` | | | | | | | |_| | | | '_ \ 
+#     / / |  __/ (__| | | | | | | (_| (_| | | | |_| |_|  _| |_| | | | |
+#     \/   \___|\___|_| |_|_| |_|_|\___\__,_|_|_|\__, (_)_|  \__,_|_| |_|
+#               2025 Steffen Blake              |___/                   
+  </p>
+
+<h1>Technically Fun</h1>
+<h2>Navigation</h2>
+<nav>
+    <a href="/">1. Home</a>
+    <a href="/posts">2. All my posts</a>
+    <a href="/about">3. About me</a>
+</nav>
+
+
+
+    
+
+
+    <h2>Making Of this Blog - Part 1</h2>
+    <h3>September 24, 2021 -  Steffen Blake</h3>
+    <p>Part 1 - Statically Served, High availability &lt;&ndash; (You are here!)</p>
+<p><a href="/posts/hugo/part-2-building-a-blog">Part 2: Building a CI/CD Markdown Blog</a></p>
+<p><a href="/posts/hugo/part-3-serving-on-kubernetes">Part 2: Serve Hugo on Kubernetes</a></p>
+<h2 id="pre-amble">Pre-amble</h2>
+<p>I wanted to take some time to write up a guide on some handy docker images I created recently in my process of building this very blog. I personally serve everything off of a Kubernetes cluster, but you could very well use this system much the same way on something like Docker Swarm or really any Docker management system.</p>
+<h2 id="goals">Goals</h2>
+<p>There were a couple primary goals when designing my blog architecture that had to be met.</p>
+<ol>
+<li>
+<p>All blog posts are written in markdown and automatically converted to HTML</p>
+</li>
+<li>
+<p>Statically served pages for the fastest load times possible</p>
+</li>
+<li>
+<p>Host on any git repository and utilize Webhooks for automatic push and build to this website</p>
+</li>
+<li>
+<p>As small of a footprint as possible for the entire setup.</p>
+</li>
+</ol>
+<p>After a fair bit of research I came to the conclusion that the following applications were ideally what I needed</p>
+<h2 id="repository-gogs">Repository: Gogs</h2>
+<p>Gitea has more features and it actually was my first pick, but unfortunately I spent well over a week trying to get it working and just couldn&rsquo;t get it to be consistent. I had some weird http errors with redirection loops.</p>
+<p>So instead I went with Gogs (the app it is a fork of) which has less features. However, still enough features.</p>
+<p>For those of you following along though I will preface this with the fact that <code>any</code> repository server (Github, GitLab, Bitbucket, Gitea, Gogs, etc. etc.) <code>should</code> be compatible. Theoretically.</p>
+<p>The only feature that is needed from the repo is the ability to setup Webhooks for Push events with a Secret, which basically every git server nowadays supports.</p>
+<h2 id="static-file-host-flashspysdocker-nginx-static-with-a-twist">Static File Host: <code>flashspys/docker-nginx-static</code> (with a twist)</h2>
+<p>This is an awesome docker image that was created by <a href="https://github.com/flashspys">Felix Wehnert (flashspys)</a> that I made my own fork of, <code>docker-nginx-static-ha</code> which can be found <a href="https://github.com/SteffenBlake/docker-nginx-static-ha">here</a></p>
+<p>What particularly caught my eye and has proven excellent:</p>
+<h3 id="the-image-can-only-be-used-for-static-file-serving-but-is-less-than-4-mb-roughly-110-the-size-of-the-official-nginx-image-the-running-container-needs-1-mb-ram">The image can only be used for static file serving but is less than 4 MB (roughly 1/10 the size of the official nginx image). The running container needs ~1 MB RAM.</h3>
+<h4 id="so-whats-the-difference">So what&rsquo;s the difference?</h4>
+<p>Primarily how the files are cached. Specifically, <code>docker-nginx-static</code> simply just serves a mounted directory <code>directly</code>. This means once it is running, any changes you make to the directory will be reflected instantly.</p>
+<p>I actually didn&rsquo;t want this, because when I run a build of the blog I don&rsquo;t want pages to be breaking if someone accesses the website mid-build.</p>
+<p>So I made a minor tweak and created <code>docker-nginx-static-ha</code> (the ha is for High availability).</p>
+<p>Now when the docker image is spun up it <code>copies</code> all of the mounted files that it will serve to its own internal directory, and then serves <code>that</code> directory instead.</p>
+<p>This small tweak now makes a big difference. Once the docker image is spun up it internally &ldquo;caches&rdquo; all the files over, and if you modify the original mounted directory, <code>no changes are reflected on the served pages</code></p>
+<p>So now you can modify the original directory to your hearts content without making any impact on the website!</p>
+<h4 id="okay-so-how-do-i-actually-make-it-update">Okay so how do I actually make it update?</h4>
+<p>Simple, you just turn it off and back on again. When it spins back up again it will re-cache all the files</p>
+<h3 id="wait-so-wouldnt-that-take-the-website-down">Wait so&hellip; wouldn&rsquo;t that take the website down&hellip;?</h3>
+<p>If you only have a single docker container running, yes. But that&rsquo;s where the <code>HA</code> part comes in. We will dig into it farther below but what you would ideally want to have happen is use a docker management system like Swarm or Kubernetes which has <code>multiple</code> containers running in parallel, a load balancer to direct traffic across them, and then when you roll out an update you take the containers down <code>one at a time</code> so you always have some running, thus the website <code>smoothly</code> transitions over without any downtime or breaking issues.</p>
+<h2 id="blog-compiler-hugo">Blog compiler: Hugo</h2>
+<p>Honestly there&rsquo;s a few good options but I really have been enjoying Hugo. Its popular, its slick, its written in Go and thus works on my Raspberry Pi 4s, it compiles my blog wicked fast, and it has a pretty small footprint.</p>
+<p>Being able to also manage what theme I use simply by what git repo I set as a submodule is also quite choice. This made the next part below also pretty easy since I could just import the theme along with the actual blog by just using the <code>--recurse-submodules</code> flag on <code>git clone</code></p>
+<h2 id="blog-cicd-adnanhwebhook">Blog CI/CD: adnanh/webhook</h2>
+<p><a href="https://github.com/adnanh/webhook">Link here</a></p>
+<p>This is another extremely lightweight and brutally simple application built by <a href="https://github.com/adnanh">Adnan Hajdarević</a>, once again built on go and thus compatible with basically everything.</p>
+<p>It simply lets me write a &ldquo;listener&rdquo; for a webhook event and then fires off a bash script on trigger. I couldn&rsquo;t really ask for much else. Well. Actually there is one thing I could ask for, and that is support for referring to env variables inside of the webhook triggers and whatnot. Unfortunately I had to use a custom solution with <code>sed</code> to manually (oof) replace &lsquo;variables&rsquo; in my webhook json, since I wanted those to be a configurable value.</p>
+<h2 id="putting-them-together-webhook-hugo">Putting them together: webhook-hugo</h2>
+<p>The next step was to combine webhook + hugo together into a single docker image, since both were compiled with go and could run in alpine this was actually pretty trivial. I found two solid and working hugo and webhook docker images and effectively just put them together. Then I prebuilt the webhook json file to be mounted in and a bit more bash work and, viola!</p>
+<p><a href="https://github.com/SteffenBlake/docker-webhook-hugo">docker-webhook-hugo</a> now exists!</p>
+<p>I detailed how to use it on its Github page but I will dig into how to actually consume and use these tools on the next blog post, so look forward to that!</p>
+<p><a href="/posts/hugo/part-2-building-a-blog">Part 2: Building a CI/CD Markdown Blog</a></p>
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+
+</div>
+
+<div id="visual-container"></div>
+
+
+  <script src="/js/site.js?ff68167c07"></script>
+
+
+</body>
+
+
+</html>

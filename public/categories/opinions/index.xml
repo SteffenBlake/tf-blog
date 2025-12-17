@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Opinions on Blog | Technically.fun</title>
+    <link>http://localhost:1313/categories/opinions/</link>
+    <description>Recent content in Opinions on Blog | Technically.fun</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/opinions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gen AI Isn&#39;t Happening Soon</title>
+      <link>http://localhost:1313/posts/opinions/gen-ai-isnt-happening-soon/</link>
+      <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/gen-ai-isnt-happening-soon/</guid>
+      <description>&lt;p&gt;I posit there will be multiple walls mankind &lt;em&gt;must&lt;/em&gt; overcome to get GenAI to be even off the ground.&lt;/p&gt;&#xA;&lt;p&gt;At it&amp;rsquo;s core, let&amp;rsquo;s consider the possible forms GenAI can take first.&lt;/p&gt;&#xA;&lt;h1 id=&#34;monolith-silicone-superstructure-mss&#34;&gt;Monolith Silicone Superstructure (MSS)&lt;/h1&gt;&#xA;&lt;p&gt;An MSS GenAI exists as the natural conclusion to taking vertical scaling to its utmost limit. Adding more and more computational power, more and more memory storage, and more and more training data until you have a sufficiently large enough, and powerful enough, system to handle the task of GenAI. Storage might take multiple warehouses worth of server arrays all deeply connected, with network setups that wiring and routing alone take a team of professionals months to lay out.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Software &#39;Engineering&#39; (And why I respectfully disagree with APEGA)</title>
+      <link>http://localhost:1313/posts/opinions/software-engineering/</link>
+      <pubDate>Sun, 16 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/software-engineering/</guid>
+      <description>&lt;p&gt;On November 26, 2019, Associate Chief Justice Nielsen of the Alberta Court of King&amp;rsquo;s Bench ordered an Injunction that stipulated an individual who was using the job title &amp;ldquo;Software Engineer&amp;rdquo; had to stop doing so.&lt;/p&gt;&#xA;&lt;p&gt;The reason for this is the fact that up here in Canada we have an organization known as APEGA, which sued the individual for using the term. APEGA claims on their website that they hold the legal right to control and enforce that only members of APEGA may legally refer to themselves to the public as an Engineer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Game Masters and Positions of Power</title>
+      <link>http://localhost:1313/posts/opinions/game-masters-and-power/</link>
+      <pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/game-masters-and-power/</guid>
+      <description>&lt;p&gt;A heavily debated topic, without a doubt. Lets begin with a quick review for the uninitiated.&lt;/p&gt;&#xA;&lt;h2 id=&#34;roleplaying-games-rpgs&#34;&gt;Roleplaying Games (&amp;lsquo;RPGs&amp;rsquo;)&lt;/h2&gt;&#xA;&lt;p&gt;A popular form of game, usually for groups. Players assume control of characters of their creation and enact out narratives. Often to keep the game consistent and reasonable a framework of rules and limitations are put into place which players agree to adhere by. Quite often dice are used as a form of randomization to enforce a degree of luck and chance to outcomes in order to simulate reality&amp;rsquo;s callous fairness. Even a master of a skill can occasionally make mistakes and a great challenge can be overcome by sheer dumb luck.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Why you don&#39;t need a Bootcamp</title>
+      <link>http://localhost:1313/posts/opinions/why-you-dont-need-a-bootcamp/</link>
+      <pubDate>Sat, 18 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/why-you-dont-need-a-bootcamp/</guid>
+      <description>&lt;p&gt;It’s the middle of 2006, I am a teen boy who just got my third paycheque from my summer job and lord knows my bank account is begging me to finally put my money to use. There are a plethora of options for a young man without any bills to pay, but I already knew what I wanted.&lt;/p&gt;&#xA;&lt;p&gt;I bought my first computer that weekend. In line at the shop I excitedly await the package, pumped to get home and finally strike out my own digital space on the machine. You see, up until this point I had been grounded in the world of the woeful shared ‘Family Computer’, an entity most of us 90s kids will fondly remember, most likely nestled in the corner of ones den or living room. Generally a simple machine, designed for browsing the internet and playing solitaire.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Inheritance vs Composition</title>
+      <link>http://localhost:1313/posts/opinions/inheritance-vs-composition/</link>
+      <pubDate>Fri, 20 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/opinions/inheritance-vs-composition/</guid>
+      <description>&lt;p&gt;This is a phrase you will eventually hear at your workplace while coding away. Perhaps during lunch break or maybe in the comments of your code review. What exactly does this mean?&lt;/p&gt;&#xA;&lt;p&gt;Well, in Object Oriented Programming, there really are two ways to relate two types to each other. ‘Is a’ vs ‘Has a’ is often the colloquial.&lt;/p&gt;&#xA;&lt;p&gt;‘Is a’ implies inheritance. For example:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&#xA;&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-csharp&#34; data-lang=&#34;csharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Warrior&lt;/span&gt; : Player {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;Implies &lt;code&gt;Warrior&lt;/code&gt; ‘Is a’ &lt;code&gt;Player&lt;/code&gt;. Which is fine and all. But lets say now that we want to have rigorous unit testing, and our &lt;code&gt;Player&lt;/code&gt; Class has a lot of stuff going on already, perhaps a multitude of overridable methods and properties, and Warrior overrides a few.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

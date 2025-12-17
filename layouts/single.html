@@ -1,0 +1,58 @@
+{{ define "main" }}
+
+{{ if or ( not ( isset .Params "date" ) ) ( lt .Date now )  }}
+    <h2>{{ .Title }}</h2>
+    {{ with .Date }}<h3>{{ .Format "January 2, 2006" }} -  {{ $.Param "author" }}</h3>{{ end }}
+    {{ .Content }}
+{{ else }}
+    <h3>Soon to come, check back on {{ .Date.Format "January 2, 2006" }}!</h3>
+    <br/>
+{{ end }}
+
+{{ $.Scratch.Set "pageTitle" .Title }}
+{{ $.Scratch.Set "site" .Site }}
+{{ $.Scratch.Set "prev" .PrevInSection }}
+{{ $.Scratch.Set "next" .NextInSection }}
+
+{{ with .Section}}
+    
+    {{ range last 1 (where ($.Scratch.Get "site").RegularPages "Section" "catalogue") }}
+        {{ if ne .Title ($.Scratch.Get "pageTitle") }}
+            <p>
+                <a href="{{ .Permalink }}"><< Give us that ole classic</a>
+            </p>
+        {{ end }}
+
+        {{ $.Scratch.Set "firstTitle" .Title }}
+        {{ with ($.Scratch.Get "prev") }}
+            {{ if ne .Title ($.Scratch.Get "firstTitle") }}
+                <p>
+                    <a href="{{ .Permalink }}">< Tell us that one from the other day</a>
+                </p>
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ range first 1 (where (where ($.Scratch.Get "site").RegularPages "Section" "catalogue") "Params.date" "lt" now) }}
+        {{ $.Scratch.Set "latestTitle" .Title }}
+
+        {{ with ($.Scratch.Get "next") }}
+            {{ if ne .Title ($.Scratch.Get "latestTitle") }}
+                <p>
+                    <a href="{{ .Permalink }}">Spin me another tale, keeper ></a>
+                </p>
+            {{ end }}
+        {{ end }}
+
+        {{ if ne .Title ($.Scratch.Get "pageTitle") }}
+            <p>
+                <a href="{{ .Permalink }}">Give us something new >></a>
+            </p>
+        {{ end }}
+    {{ end }}
+    
+{{ end }}
+
+{{- partial "footer.html" . -}}
+
+{{ end }}

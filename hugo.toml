@@ -1,0 +1,13 @@
+baseURL = 'https://blog.technically.fun'
+languageCode = 'en-us'
+title = 'Blog | Technically.fun'
+pluralizelisttitles = false
+preserveTaxonomyNames = true
+
+[params]
+    css = [
+        '/css/site.css'
+    ]
+    js = [
+        '/js/site.js'
+    ]
